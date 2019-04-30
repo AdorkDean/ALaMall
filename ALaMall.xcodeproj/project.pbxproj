@@ -287,11 +287,11 @@
 		940998D02278283B00F71982 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				940998D42278283B00F71982 /* UserLoginController.h */,
 				940998D12278283B00F71982 /* UserLoginController.m */,
 				940998D22278283B00F71982 /* UserRegisterViewController.h */,
-				940998D32278283B00F71982 /* UserForgetPasswordController.h */,
-				940998D42278283B00F71982 /* UserLoginController.h */,
 				940998D52278283B00F71982 /* UserRegisterViewController.m */,
+				940998D32278283B00F71982 /* UserForgetPasswordController.h */,
 				940998D62278283B00F71982 /* UserForgetPasswordController.m */,
 			);
 			path = User;

@@ -76,11 +76,10 @@
     [self showLoadingView];
     [User loginWithMobile:mobile password:password success:^(BOOL status, NSNumber *code, NSString *message, User *user, NSString *app_cart_cookie_id) {
         if (status) {
-            [self toast:@"登录成功"];
-            sleep(2);
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self toast:@"登录成功" seconds:2.0];
+//            [self.navigationController popToRootViewControllerAnimated:YES];
         } else {
-            [self toast:message];
+            [self toast:message seconds:2.0];
         }
         [self hideLoadingView];
     } failure:^(NSError *error) {

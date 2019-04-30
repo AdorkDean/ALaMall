@@ -92,9 +92,11 @@
     [HttpClient requestJson:kUrlUserRegister
                      params:params
                     success:^(BOOL result, NSNumber *resultCode, NSString *message, NSDictionary *data) {
-                        [self toast:@"注册成功"];
                         [self hideLoadingView];
-                        [self.navigationController popViewControllerAnimated:YES];
+                        [self toast:@"注册成功" seconds:1.0];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [self.navigationController popToRootViewControllerAnimated:YES];
+                        });
                     }
                     failure:^(NSError *error) {
                         [self toastWithError:error];
