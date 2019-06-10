@@ -8,6 +8,11 @@
 
 #import "AppDelegate.h"
 #import "UserLoginController.h"
+#import "IndexViewController.h"
+#import "OrderViewController.h"
+#import "ShoppingCartViewController.h"
+#import "ClassViewController.h"
+#import "MemberCenterViewController.h"
 
 @interface AppDelegate ()
 
@@ -57,23 +62,23 @@
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
     //home tab
-    UIViewController *homeController = [[UIViewController alloc] init];
+    IndexViewController *homeController = [[IndexViewController alloc] init];
     homeController.tabBarItem = [self createTabBarItem:@"首页" imageNamed:@"tab_home" selectedImageNamed:@"tab_home_s"];
     UINavigationController *homeNavController = [[UINavigationController alloc] initWithRootViewController:homeController];
     
     //topic tab
-    UIViewController *topicController = [[UIViewController alloc] init];
-    topicController.tabBarItem = [self createTabBarItem:@"优惠" imageNamed:@"tab_topic" selectedImageNamed:@"tab_topic_s"];
+    ClassViewController *topicController = [[ClassViewController alloc] init];
+    topicController.tabBarItem = [self createTabBarItem:@"分类" imageNamed:@"tab_topic" selectedImageNamed:@"tab_topic_s"];
     UINavigationController *topicNavController = [[UINavigationController alloc] initWithRootViewController:topicController];
     
     //cart tab
-    UIViewController *cartController = [[UIViewController alloc] init];
+    ShoppingCartViewController *cartController = [[ShoppingCartViewController alloc] init];
     cartController.tabBarItem = [self createTabBarItem:@"购物车" imageNamed:@"tab_cart" selectedImageNamed:@"tab_cart_s"];
     UINavigationController *cartNavController = [[UINavigationController alloc] initWithRootViewController:cartController];
     
     //my tab
-    UserLoginController *myController = [[UserLoginController alloc] init];
-    myController.tabBarItem = [self createTabBarItem:@"我的" imageNamed:@"tab_my" selectedImageNamed:@"tab_my_s"];
+    MemberCenterViewController *myController = [[MemberCenterViewController alloc] init];
+    myController.tabBarItem = [self createTabBarItem:@"会员中心" imageNamed:@"tab_my" selectedImageNamed:@"tab_my_s"];
     UINavigationController *myNavController = [[UINavigationController alloc] initWithRootViewController:myController];
     
     tabBarController.viewControllers = @[homeNavController, topicNavController, cartNavController, myNavController];

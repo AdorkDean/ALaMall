@@ -9,7 +9,7 @@
 //
 
 //网站地址
-#define kUrlBase                        @"http://ceshi.blhzsqp.com/index.php/api" //本地地址
+#define kUrlBase                        @"http://www.blhzsqp.com/index.php/api" //本地地址
 //#define kUrlBase                        @"http://dongWapi.ygcr8.com/v1" //在线服务器
 #define kUrlCategoryListWithProduct     kUrlBase@"/category/list-with-product"
 //#define kUrlCategoryList                kUrlBase@"/app/category/list"

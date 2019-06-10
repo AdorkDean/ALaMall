@@ -32,7 +32,6 @@
     [self.navigationController setNavigationBarHidden:YES animated: YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
     
-    
     _vLoginView = [[UserLoginView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     _vLoginView.delegate = self;
     [self.view addSubview:_vLoginView];
@@ -74,11 +73,13 @@
     }
     
     [self showLoadingView];
-    [User loginWithMobile:mobile password:password success:^(BOOL status, NSNumber *code, NSString *message, User *user, NSString *app_cart_cookie_id) {
-        if (status) {
+    [User loginWithMobile:mobile password:password success:^(NSNumber *code, NSString *message, NSDictionary *data) {
+        if (code.integerValue == 0) {
+            [[NSUserDefaults standardUserDefaults] setObject:data[@"session"] forKey:kStorageUserSession];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             [self toast:@"登录成功" seconds:2.0];
-//            [self.navigationController popToRootViewControllerAnimated:YES];
-        } else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
             [self toast:message seconds:2.0];
         }
         [self hideLoadingView];

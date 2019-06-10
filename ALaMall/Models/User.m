@@ -55,7 +55,7 @@
 //登录
 + (void)loginWithMobile:(NSString *)mobile
                password:(NSString *)password
-                success:(void(^)(BOOL status, NSNumber *code, NSString *message, User *user, NSString *app_cart_cookie_id))success
+                success:(void(^)(NSNumber *code, NSString *message, NSDictionary *data))success
                 failure:(void(^)(NSError *error))failure
 {
     NSString *url = kUrlUserLogin;
@@ -65,15 +65,7 @@
     [HttpClient requestJson:url
                      params:params
                     success:^(BOOL status, NSNumber *code, NSString *message, NSDictionary *data) {
-                        NSString *app_cart_cookie_id = nil;
-                        User *user = nil;
-                        if (status) {
-                            app_cart_cookie_id = [data objectForKey:kStorageAppCartCookieId];
-                            user = [User mj_objectWithKeyValues:[data objectForKey:@"user"]];
-                            [User saveUserInfoToStorage:user];
-                            [StorageUtil saveAppCartCookieId:app_cart_cookie_id];
-                        }
-                        success(status, code, message, user, app_cart_cookie_id);
+                        success(code, message, data[@"index_response"]);
                     }
                     failure:failure];
 }

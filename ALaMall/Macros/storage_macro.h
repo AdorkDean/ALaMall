@@ -20,3 +20,4 @@
 #define kStorageUserId              @"user_id"
 #define kStorageUserMobile          @"user_mobile"
 #define kStorageUserLevel           @"user_level"
+#define kStorageUserSession         @"user_session"
