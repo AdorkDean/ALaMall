@@ -67,6 +67,16 @@
         make.edges.mas_equalTo(0);
     }];
     
+    [self loadRequest];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadRequest) name:kNotifyPreorderUserLogin object:nil];
+}
+
+#pragma mark - Getter&Setter -- 懒加载
+
+
+#pragma mark - Private -- 私有方法
+- (void)loadRequest {
     NSString * session = [[NSUserDefaults standardUserDefaults] objectForKey:kStorageUserSession];
     NSString * url = @"http://www.blhzsqp.com/index.php/wap/order/myorderlist.html";
     if (session.length > 0) {
@@ -77,19 +87,24 @@
     [self.webView loadRequest:request];
 }
 
-#pragma mark - Getter&Setter -- 懒加载
-
-
-#pragma mark - Private -- 私有方法
-
-
 #pragma mark - Override -- 重写方法
 
 
 #pragma mark - Public -- 公有方法
 
 
-#pragma mark - <#Delegate#> -- 代理方法，每个代理新建一个mark。
-
+#pragma mark - WKNavigationDelegate -- 代理方法，每个代理新建一个mark。
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    NSMutableString *url=[[NSMutableString alloc]initWithString:[navigationAction.request.URL absoluteString]];
+    NSLog(@"是否允许这个导航:%@", url);
+    if ([url containsString:@"login"]) {
+        decisionHandler(WKNavigationActionPolicyCancel);
+        UserLoginController * userCv = [UserLoginController new];
+        userCv.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:userCv animated:YES];
+        return;
+    }
+    decisionHandler(WKNavigationActionPolicyAllow);
+}
 
 @end

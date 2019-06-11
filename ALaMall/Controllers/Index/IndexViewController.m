@@ -9,6 +9,7 @@
 #import "IndexViewController.h"
 #import <WebKit/WebKit.h>
 #import "UserLoginController.h"
+#import "OrderViewController.h"
 
 #pragma mark - Define&StaticVar -- 静态变量和Define声明
 
@@ -69,22 +70,25 @@
     }];
     
     
-//    self.webView = [[UIWebView alloc]init];
-//    [self.view addSubview:self.webView];
-//    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.mas_equalTo(0);
-//    }];
+    [self loadRequest];
     
-    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:@"http://www.blhzsqp.com/index.php/wap/index/indexs"]];
-    [self.webView loadRequest:request];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadRequest) name:kNotifyPreorderUserLogin object:nil];
 }
 
 #pragma mark - Getter&Setter -- 懒加载
 
 
 #pragma mark - Private -- 私有方法
-
+- (void)loadRequest {
+    NSString * session = [[NSUserDefaults standardUserDefaults] objectForKey:kStorageUserSession];
+    NSString * url = @"http://www.blhzsqp.com/index.php/wap/index/indexs";
+    if (session.length > 0) {
+        url = [NSString stringWithFormat:@"%@?session=%@", url,session];
+    }
+    
+    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:url]];
+    [self.webView loadRequest:request];
+}
 
 #pragma mark - Override -- 重写方法
 
@@ -101,6 +105,13 @@
         UserLoginController * userCv = [UserLoginController new];
         userCv.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:userCv animated:YES];
+        return;
+    }
+    if ([url containsString:@"myorderlist"]) {
+        decisionHandler(WKNavigationActionPolicyCancel);
+        OrderViewController * orderCv = [OrderViewController new];
+        orderCv.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:orderCv animated:YES];
         return;
     }
     decisionHandler(WKNavigationActionPolicyAllow);

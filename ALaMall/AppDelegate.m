@@ -23,6 +23,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    NSString * sessionId = [[NSUserDefaults standardUserDefaults] objectForKey:kStorageUserSession];
+    if (sessionId.length > 0) {
+        [HttpClient requestJson:kUrlUserAutoLogin params:@{
+                                                           @"sign" : @"a13bb69fba73a2652ffa7b4b42ff4af4",
+                                                           @"session" : sessionId
+                                                           } success:^(BOOL result, NSNumber *resultCode, NSString *message, NSDictionary *data) {
+                                                               NSLog(@"message:%@, data;%@", message, data);
+                                                           } failure:^(NSError *error) {
+                                                               
+                                                           }];
+    }
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [self rootController];
     self.window.backgroundColor = [UIColor whiteColor];

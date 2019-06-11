@@ -86,4 +86,6 @@
 //退出登录
 #define kUrlUserLogout                  kUrlBase@"/logout/index"
 
+#define kUrlUserAutoLogin               kUrlBase@"/api/autoLogin"
+
 

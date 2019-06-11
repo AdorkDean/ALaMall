@@ -77,6 +77,14 @@
         if (code.integerValue == 0) {
             [[NSUserDefaults standardUserDefaults] setObject:data[@"session"] forKey:kStorageUserSession];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            [HttpClient requestJson:kUrlUserAutoLogin params:@{
+                                                               @"sign" : @"a13bb69fba73a2652ffa7b4b42ff4af4",
+                                                               @"session" : data[@"session"]
+                                                               } success:^(BOOL result, NSNumber *resultCode, NSString *message, NSDictionary *data) {
+                                                                   NSLog(@"message:%@, data;%@", message, data);
+                                                               } failure:^(NSError *error) {
+                                                                   
+                                                               }];
             [self toast:@"登录成功" seconds:2.0];
             [self.navigationController popViewControllerAnimated:YES];
         }else{

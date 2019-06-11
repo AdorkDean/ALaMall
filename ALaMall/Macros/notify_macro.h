@@ -15,3 +15,5 @@
 //在提交订单过程中添加地址，可能响应的事件
 #define kNotifyPreorderAddressDidChanged    @"kNotifyPreorderAddressDidChanged"
 #define kNotifyPreorderAddressesDidChanged  @"kNotifyPreorderAddressesDidChanged"
+
+#define kNotifyPreorderUserLogin            @"kNotifyPreorderUserLogin"

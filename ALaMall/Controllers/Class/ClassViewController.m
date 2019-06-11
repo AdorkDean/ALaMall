@@ -66,15 +66,25 @@
         make.edges.mas_equalTo(0);
     }];
     
-    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:@"http://www.blhzsqp.com/index.php/wap/goods/goodsclassificationlists"]];
-    [self.webView loadRequest:request];
+    [self loadRequest];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadRequest) name:kNotifyPreorderUserLogin object:nil];
 }
 
 #pragma mark - Getter&Setter -- 懒加载
 
 
 #pragma mark - Private -- 私有方法
-
+- (void)loadRequest {
+    NSString * session = [[NSUserDefaults standardUserDefaults] objectForKey:kStorageUserSession];
+    NSString * url = @"http://www.blhzsqp.com/index.php/wap/goods/goodsclassificationlists";
+    if (session.length > 0) {
+        url = [NSString stringWithFormat:@"%@?session=%@", url,session];
+    }
+    
+    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:url]];
+    [self.webView loadRequest:request];
+}
 
 #pragma mark - Override -- 重写方法
 
