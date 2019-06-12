@@ -71,4 +71,10 @@
     return YES;
 }
 
++ (BOOL)isValidUser:(NSString *)userName {
+    NSString *regex = @"^[\\u4E00-\\u9FEA]+$";
+    
+    return ([userName rangeOfString:regex options:NSRegularExpressionSearch].length>0);
+}
+
 @end

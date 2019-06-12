@@ -72,9 +72,8 @@
 #pragma mark - UserRegisterViewDelegate -- 代理方法，每个代理新建一个mark。
 - (void)doClickRegisterBtnWithMobile:(NSString *)mobile password:(NSString *)password
 {
-    NSError *error = nil;
-    if (![ValidatorUtil isValidMobile:mobile error:&error]) {
-        [self toast:[error localizedDescription]];
+    if ([ValidatorUtil isValidUser:mobile]) {
+        [self toast:@"用户名不能包含中文"];
         return;
     }
     if (password.length <= 0) {

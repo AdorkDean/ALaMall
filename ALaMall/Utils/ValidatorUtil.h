@@ -18,4 +18,7 @@
 //判断是否正确的密码格式
 + (BOOL)isValidPassword:(NSString *)password error:(NSError **)error;
 
+//判断用户名是否有效
++ (BOOL)isValidUser:(NSString*)userName;
+
 @end

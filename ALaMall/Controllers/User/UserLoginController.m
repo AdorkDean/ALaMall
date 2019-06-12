@@ -62,11 +62,11 @@
 
 - (void)doClickLoginBtnWithMobile:(NSString *)mobile password:(NSString *)password
 {
-    NSError *error = nil;
-    if (![ValidatorUtil isValidMobile:mobile error:&error]) {
-        [self toast:[error localizedDescription]];
+    if ([ValidatorUtil isValidUser:mobile]) {
+        [self toast:@"用户名不能包含中文"];
         return;
     }
+    
     if (password.length <= 0) {
         [self toast:@"密码不能为空"];
         return;
@@ -77,11 +77,11 @@
         if (code.integerValue == 0) {
             [[NSUserDefaults standardUserDefaults] setObject:data[@"session"] forKey:kStorageUserSession];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyPreorderUserLogin object:nil];
             [HttpClient requestJson:kUrlUserAutoLogin params:@{
                                                                @"sign" : @"a13bb69fba73a2652ffa7b4b42ff4af4",
                                                                @"session" : data[@"session"]
                                                                } success:^(BOOL result, NSNumber *resultCode, NSString *message, NSDictionary *data) {
-                                                                   NSLog(@"message:%@, data;%@", message, data);
                                                                } failure:^(NSError *error) {
                                                                    
                                                                }];

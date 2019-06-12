@@ -27,10 +27,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configIndexViewControllerViewAndConstraint];
     
+    //导航栏
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
+    [self configIndexViewControllerViewAndConstraint];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //状态栏
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = [UIColor colorWithRed:230.f/255.f green:1.f/255.f blue:17.f/255.f alpha:0.8];
+    }
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    //状态栏
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = [UIColor clearColor];
+    }
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
 #pragma mark - Config Constraint -- 视图布局配置
@@ -149,7 +170,6 @@
     NSLog(@"网页导航加载完毕");
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    self.title = webView.title;
     [webView evaluateJavaScript:@"document.title" completionHandler:^(id _Nullable ss, NSError * _Nullable error) {
         NSLog(@"----document.title:%@---webView title:%@",ss,webView.title);
     }];
