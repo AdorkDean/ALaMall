@@ -51,6 +51,7 @@
 		948C2B3922AB4341007FC237 /* ShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 948C2B3822AB4341007FC237 /* ShoppingCartViewController.m */; };
 		948C2B3C22AB435F007FC237 /* ClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 948C2B3B22AB435F007FC237 /* ClassViewController.m */; };
 		948C2B4022AB4A2C007FC237 /* MemberCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 948C2B3F22AB4A2C007FC237 /* MemberCenterViewController.m */; };
+		94A4AF1F22B3D7FC00F64EF9 /* GoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A4AF1E22B3D7FC00F64EF9 /* GoodsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +149,8 @@
 		948C2B3B22AB435F007FC237 /* ClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassViewController.m; sourceTree = "<group>"; };
 		948C2B3E22AB4A2C007FC237 /* MemberCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberCenterViewController.h; sourceTree = "<group>"; };
 		948C2B3F22AB4A2C007FC237 /* MemberCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberCenterViewController.m; sourceTree = "<group>"; };
+		94A4AF1D22B3D7FC00F64EF9 /* GoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsViewController.h; sourceTree = "<group>"; };
+		94A4AF1E22B3D7FC00F64EF9 /* GoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsViewController.m; sourceTree = "<group>"; };
 		A725F3D348E08ECC2A19A512 /* Pods-ALaMall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALaMall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ALaMall/Pods-ALaMall.debug.xcconfig"; sourceTree = "<group>"; };
 		A9F88311AC15763DDEDAF93C /* libPods-ALaMall.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ALaMall.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -294,6 +297,7 @@
 		940998CF2278283B00F71982 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				94A4AF1C22B3D7E600F64EF9 /* Goods */,
 				948C2B3D22AB4A07007FC237 /* MemberCenter */,
 				948C2B3022AB41DC007FC237 /* Class */,
 				948C2B2F22AB41DC007FC237 /* Index */,
@@ -418,6 +422,15 @@
 			path = MemberCenter;
 			sourceTree = "<group>";
 		};
+		94A4AF1C22B3D7E600F64EF9 /* Goods */ = {
+			isa = PBXGroup;
+			children = (
+				94A4AF1D22B3D7FC00F64EF9 /* GoodsViewController.h */,
+				94A4AF1E22B3D7FC00F64EF9 /* GoodsViewController.m */,
+			);
+			path = Goods;
+			sourceTree = "<group>";
+		};
 		BC2C5E22C1808B683268FBF7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,6 +545,7 @@
 				940998F52278283B00F71982 /* UIColor+hexColor.m in Sources */,
 				940998ED2278283B00F71982 /* Utils.m in Sources */,
 				940996322278228A00F71982 /* main.m in Sources */,
+				94A4AF1F22B3D7FC00F64EF9 /* GoodsViewController.m in Sources */,
 				9409991722782CB400F71982 /* ProductAttrItem.m in Sources */,
 				940998FD2278283B00F71982 /* UserForgetPasswordController.m in Sources */,
 				940998FB2278283B00F71982 /* UserLoginController.m in Sources */,

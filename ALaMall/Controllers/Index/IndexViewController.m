@@ -10,6 +10,7 @@
 #import <WebKit/WebKit.h>
 #import "UserLoginController.h"
 #import "OrderViewController.h"
+#import "GoodsViewController.h"
 
 #pragma mark - Define&StaticVar -- 静态变量和Define声明
 
@@ -135,6 +136,16 @@
         [self.navigationController pushViewController:orderCv animated:YES];
         return;
     }
+    /*
+    if ([url containsString:@"detail"]) {
+        decisionHandler(WKNavigationActionPolicyCancel);
+        GoodsViewController * goodsCv = [GoodsViewController new];
+        goodsCv.url = url;
+        goodsCv.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:goodsCv animated:YES];
+        return;
+    }
+    */
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 
